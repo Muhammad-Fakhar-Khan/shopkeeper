@@ -81,3 +81,64 @@
 .addButton:hover {
   background-color: #cc005f;
 }
+
+/* ===================== Responsive ===================== */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .productImage {
+    height: 160px;
+  }
+
+  .productTitle {
+    font-size: 0.85rem;
+  }
+
+  .productPrice {
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 600px) {
+  .recentlyAdded {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr; /* 2 products per row */
+    gap: 1rem;
+  }
+
+  .productImage {
+    height: 140px;
+  }
+
+  .addButton {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 400px) {
+  .grid {
+    grid-template-columns: 1fr; /* Single column */
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .productImage {
+    height: 120px;
+  }
+}

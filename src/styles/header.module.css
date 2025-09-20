@@ -5,6 +5,7 @@
   padding: 1rem 2rem;
   background-color: #f3f4f6;
   border-bottom: 1px solid #e5e7eb;
+  position: relative;
 }
 
 .logo {
@@ -13,12 +14,13 @@
   color: #ec4899;
 }
 
+/* Search Bar */
 .searchBar {
-  flex: 1; /* takes all middle space */
+  flex: 1;
   max-width: 500px;
   display: flex;
   align-items: center;
-  margin: 0 2rem; /* space on both sides */
+  margin: 0 2rem;
 }
 
 .searchInput {
@@ -39,10 +41,11 @@
   cursor: pointer;
 }
 
+/* Nav Links */
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 2rem; /* space between links/icons */
+  gap: 2rem;
 }
 
 .navLink {
@@ -55,6 +58,7 @@
   color: #ec4899;
 }
 
+/* Cart Badge */
 .cartBadge {
   position: absolute;
   top: -0.5rem;
@@ -68,4 +72,74 @@
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
+}
+
+/* ================== Responsive ================== */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .searchBar {
+    margin: 0 1rem;
+    max-width: 300px;
+  }
+
+  .navLinks {
+    gap: 1.2rem;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+  }
+
+  .searchBar {
+    order: 3; /* Move search below logo & nav */
+    width: 100%;
+    margin: 0.75rem 0 0;
+  }
+
+  .searchInput {
+    font-size: 0.9rem;
+  }
+
+  .searchButton {
+    font-size: 0.9rem;
+  }
+
+  .navLinks {
+    gap: 1rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navLinks {
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 0.5rem;
+  }
+
+  .searchBar {
+    margin-top: 0.75rem;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
 }

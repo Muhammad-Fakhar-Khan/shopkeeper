@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import Container from "../components/Container";
-import { getCategory, getProducts } from "@/library";
+import { getCategory, getAllProducts } from "@/library";
 
 export default async function StorePage() {
   const categories = await getCategory();
-  const products = await getProducts();
+  const products = await getAllProducts();
 
   return (
     <div className="bg-gray-100 py-10">

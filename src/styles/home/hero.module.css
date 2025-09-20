@@ -71,3 +71,76 @@
 .slide:hover {
   transform: scale(1.05);
 }
+
+/* ================== Responsive ================== */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+
+  .textSection {
+    max-width: 100%;
+  }
+
+  .textSection h1 {
+    font-size: 2rem;
+  }
+
+  .textSection p {
+    font-size: 1rem;
+  }
+
+  .imageSection {
+    max-width: 100%;
+    margin-top: 2rem;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 600px) {
+  .hero {
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .textSection h1 {
+    font-size: 1.75rem;
+  }
+
+  .textSection p {
+    font-size: 0.95rem;
+  }
+
+  .ctaButton {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .imageSection {
+    border-radius: 8px;
+  }
+
+  .slide {
+    border-radius: 8px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 400px) {
+  .textSection h1 {
+    font-size: 1.5rem;
+  }
+
+  .textSection p {
+    font-size: 0.85rem;
+  }
+
+  .ctaButton {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+}

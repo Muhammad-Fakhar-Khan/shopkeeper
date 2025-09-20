@@ -2,29 +2,42 @@
 export async function getCategory() {
   try {
     const response = await fetch("https://fakestoreapi.com/products/categories", {
-      cache: "no-store", // ensures fresh fetch
+      cache: "no-store",
     });
     if (!response.ok) throw new Error("Failed to fetch categories");
-    const data = await response.json();
-    return data; // e.g., ["electronics", "jewelery", ...]
+    return await response.json();
   } catch (error) {
     console.error("Error fetching categories:", error);
-    return []; // return empty array instead of undefined
+    return [];
   }
 }
 
-// Fetch products
+// Fetch all products
+export async function getAllProducts() {
+  try {
+    const response = await fetch("https://fakestoreapi.com/products", {
+      cache: "no-store",
+    });
+    if (!response.ok) throw new Error("Failed to fetch products");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching all products:", error);
+    return [];
+  }
+}
+
+// Fetch single product by ID
 export async function getProducts(productId = null) {
   let API = "https://fakestoreapi.com/products";
   if (productId) API += `/${productId}`;
 
   try {
-    const response = await fetch(API);
-    if (!response.ok) throw new Error("Failed to fetch products");
+    const response = await fetch(API, { cache: "no-store" });
+    if (!response.ok) throw new Error(`Failed to fetch products: ${response.status}`);
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching products:", error);
+    console.error("Error fetching products:", error); // 👈 will log in your terminal
     return productId ? null : [];
   }
 }
