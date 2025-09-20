@@ -12,4 +12,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* add at top of globals.css */
+:root{
+  --card-shadow: 0 8px 20px rgba(16,24,40,0.06);
+  --accent: #ec4899;
+  --muted: #6b7280;
+}
+
+/* optional subtle page background */
+body {
+  background: #f8fafc; /* very light */
+}
 
