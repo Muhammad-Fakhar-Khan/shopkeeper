@@ -3,9 +3,14 @@ import React, { useState } from "react";
 import { FiSearch, FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import Container from "./Container";
 import Link from "next/link";
+import { useCart } from "@/context/CartContext"; // ✅ import context
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { cart } = useCart(); // ✅ get cart state
+
+  // total items in cart
+  const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <header className="bg-gray-100 border-b border-gray-300 py-4 px-6">
@@ -37,9 +42,11 @@ export default function Header() {
           </Link>
           <Link href="/cart" className="relative">
             <FiShoppingCart size={25} />
-            <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-              3
-            </span>
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                {cartCount}
+              </span>
+            )}
           </Link>
         </nav>
 
@@ -75,9 +82,11 @@ export default function Header() {
             </Link>
             <Link href="/cart" className="relative w-fit">
               <FiShoppingCart size={25} />
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                3
-              </span>
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  {cartCount}
+                </span>
+              )}
             </Link>
           </nav>
         </div>
