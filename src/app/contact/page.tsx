@@ -38,7 +38,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-gray-50 py-16 px-6">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-4 text-gray-800">
-          Contact <span className="text-pink-600">Us</span>
+          Contact <span className="from-pink-600 to-purple-600">Us</span>
         </h1>
         <p className="text-center text-gray-600 mb-12">
           We'd love to hear from you! Whether you have a question or just want to say hello.
