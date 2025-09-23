@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react"; // nice icons
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -10,11 +10,28 @@ export default function ContactPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Placeholder → replace with EmailJS or API call
-    setStatus("✅ Your message has been sent!");
-    setFormData({ name: "", email: "", message: "" });
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setStatus("✅ Your message has been sent!");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus("❌ Failed to send message.");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("❌ Failed to send message.");
+    }
   };
 
   return (
@@ -28,7 +45,7 @@ export default function ContactPage() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {/* Left: Contact Info */}
+          {/* Contact Info */}
           <div className="bg-white p-8 rounded-2xl shadow-lg space-y-6">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Get in Touch</h2>
             <div className="flex items-center gap-4">
@@ -45,20 +62,9 @@ export default function ContactPage() {
               <MapPin className="text-pink-600" />
               <span className="text-gray-700">123 E-Store Street, Karachi, Pakistan</span>
             </div>
-            <div className="mt-8">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!..."
-                width="100%"
-                height="200"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                className="rounded-lg"
-              ></iframe>
-            </div>
           </div>
 
-          {/* Right: Contact Form */}
+          {/* Contact Form */}
           <div className="bg-white p-8 rounded-2xl shadow-lg">
             <h2 className="text-2xl font-semibold text-gray-800 mb-6">Send us a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
