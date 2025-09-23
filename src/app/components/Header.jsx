@@ -1,110 +1,94 @@
 "use client";
 import React, { useState } from "react";
-import { FiSearch, FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
-import Container from "./Container";
-import Link from "next/link";
-import { useCart } from "@/context/CartContext"; // ✅ import context
+import { Mail, Phone, MapPin, Send } from "lucide-react"; // nice icons
 
-export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const { cart } = useCart(); // ✅ get cart state
+export default function ContactPage() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("");
 
-  // total items in cart
-  const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Placeholder → replace with EmailJS or API call
+    setStatus("✅ Your message has been sent!");
+    setFormData({ name: "", email: "", message: "" });
+  };
 
   return (
-    <header className="bg-gray-100 border-b border-gray-300 py-4 px-6">
-      <Container className="flex items-center justify-between">
-        {/* Logo */}
-        <span className="text-3xl font-bold text-pink-500">E Store</span>
+    <div className="min-h-screen bg-gray-50 py-16 px-6">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-4xl font-bold text-center mb-4 text-gray-800">
+          Contact <span className="text-pink-600">Us</span>
+        </h1>
+        <p className="text-center text-gray-600 mb-12">
+          We'd love to hear from you! Whether you have a question or just want to say hello.
+        </p>
 
-        {/* Search Bar (hidden on small screens) */}
-        <div className="hidden md:flex flex-1 max-w-md mx-6">
-          <div className="flex w-full">
-            <input
-              type="text"
-              placeholder="Search for products"
-              className="flex-1 border border-gray-300 rounded-l-md p-2 focus:outline-none focus:border-pink-500"
-            />
-            <button className="bg-pink-500 text-white p-2 rounded-r-md hover:bg-pink-600">
-              <FiSearch size={20} />
-            </button>
-          </div>
-        </div>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
-          <Link href="/" className="font-semibold text-gray-800 hover:text-pink-500">
-            Home
-          </Link>
-          <Link href="/store" className="font-semibold text-gray-800 hover:text-pink-500">
-            Store
-          </Link>
-          <Link href="/about" className="font-semibold text-gray-800 hover:text-pink-500">
-            About
-          </Link>
-          <Link href="/contact" className="font-semibold text-gray-800 hover:text-pink-500">
-            Contact
-          </Link>
-          <Link href="/cart" className="relative">
-            <FiShoppingCart size={25} />
-            {cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                {cartCount}
-              </span>
-            )}
-          </Link>
-        </nav>
-
-        {/* Mobile Hamburger */}
-        <button
-          className="md:hidden text-gray-800"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
-        </button>
-      </Container>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden mt-4 px-6 space-y-4">
-          {/* Mobile Search */}
-          <div className="flex">
-            <input
-              type="text"
-              placeholder="Search for products"
-              className="flex-1 border border-gray-300 rounded-l-md p-2 focus:outline-none focus:border-pink-500"
-            />
-            <button className="bg-pink-500 text-white p-2 rounded-r-md hover:bg-pink-600">
-              <FiSearch size={20} />
-            </button>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {/* Left: Contact Info */}
+          <div className="bg-white p-8 rounded-2xl shadow-lg space-y-6">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Get in Touch</h2>
+            <div className="flex items-center gap-4">
+              <Mail className="text-pink-600" />
+              <a href="mailto:support@theeproject.com" className="text-gray-700 hover:text-pink-600">
+                support@theeproject.com
+              </a>
+            </div>
+            <div className="flex items-center gap-4">
+              <Phone className="text-pink-600" />
+              <span className="text-gray-700">+92 300 1234567</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <MapPin className="text-pink-600" />
+              <span className="text-gray-700">123 E-Store Street, Karachi, Pakistan</span>
+            </div>
           </div>
 
-          {/* Mobile Nav Links */}
-          <nav className="flex flex-col gap-4">
-            <Link href="/" className="font-semibold text-gray-800 hover:text-pink-500">
-              Home
-            </Link>
-            <Link href="/store" className="font-semibold text-gray-800 hover:text-pink-500">
-              Store
-            </Link>
-            <Link href="/about" className="font-semibold text-gray-800 hover:text-pink-500">
-              About
-            </Link>
-            <Link href="/contact" className="font-semibold text-gray-800 hover:text-pink-500">
-              Contact
-            </Link>
-            <Link href="/cart" className="relative w-fit">
-              <FiShoppingCart size={25} />
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                  {cartCount}
-                </span>
-              )}
-            </Link>
-          </nav>
+          {/* Right: Contact Form */}
+          <div className="bg-white p-8 rounded-2xl shadow-lg">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-6">Send us a Message</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                required
+              />
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                rows={5}
+                value={formData.message}
+                onChange={handleChange}
+                className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                required
+              />
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-pink-600 to-purple-600 text-white px-4 py-3 rounded-lg shadow-lg hover:opacity-90 transition"
+              >
+                <Send size={18} /> Send Message
+              </button>
+            </form>
+            {status && <p className="mt-4 text-green-600">{status}</p>}
+          </div>
         </div>
-      )}
-    </header>
+      </div>
+    </div>
   );
 }

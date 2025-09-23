@@ -45,6 +45,17 @@ export default function ContactPage() {
               <MapPin className="text-pink-600" />
               <span className="text-gray-700">123 E-Store Street, Karachi, Pakistan</span>
             </div>
+            <div className="mt-8">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!..."
+                width="100%"
+                height="200"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                className="rounded-lg"
+              ></iframe>
+            </div>
           </div>
 
           {/* Right: Contact Form */}
