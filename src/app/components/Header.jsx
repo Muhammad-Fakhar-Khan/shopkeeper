@@ -40,6 +40,12 @@ export default function Header() {
           <Link href="/store" className="font-semibold text-gray-800 hover:text-pink-500">
             Store
           </Link>
+          <Link href="/about" className="font-semibold text-gray-800 hover:text-pink-500">
+            About
+          </Link>
+          <Link href="/contact" className="font-semibold text-gray-800 hover:text-pink-500">
+            Contact
+          </Link>
           <Link href="/cart" className="relative">
             <FiShoppingCart size={25} />
             {cartCount > 0 && (
@@ -62,6 +68,7 @@ export default function Header() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden mt-4 px-6 space-y-4">
+          {/* Mobile Search */}
           <div className="flex">
             <input
               type="text"
@@ -73,12 +80,19 @@ export default function Header() {
             </button>
           </div>
 
+          {/* Mobile Nav Links */}
           <nav className="flex flex-col gap-4">
             <Link href="/" className="font-semibold text-gray-800 hover:text-pink-500">
               Home
             </Link>
             <Link href="/store" className="font-semibold text-gray-800 hover:text-pink-500">
               Store
+            </Link>
+            <Link href="/about" className="font-semibold text-gray-800 hover:text-pink-500">
+              About
+            </Link>
+            <Link href="/contact" className="font-semibold text-gray-800 hover:text-pink-500">
+              Contact
             </Link>
             <Link href="/cart" className="relative w-fit">
               <FiShoppingCart size={25} />
