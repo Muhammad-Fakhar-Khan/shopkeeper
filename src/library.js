@@ -21,7 +21,7 @@ export async function getAllProducts() {
     if (!response.ok) throw new Error("Failed to fetch products");
     return await response.json();
   } catch (error) {
-    console.error("Error fetching all products:", error);
+    console.error("Error fetching products:", error);
     return [];
   }
 }

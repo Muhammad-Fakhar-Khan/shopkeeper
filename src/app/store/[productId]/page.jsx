@@ -1,6 +1,7 @@
 import React from "react";
-import Container from "@/app/components/Container";
-import { getProducts } from "@/library";
+import Container from "../../components/Container"; // relative path
+import { getProducts } from "../../../library";
+
 
 export const dynamic = "force-dynamic";
 

@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import Container from "@/app/components/Container";
+import Container from "../components/Container"; // relative path
+
 
 export default function Error({ error, reset }) {
   return (

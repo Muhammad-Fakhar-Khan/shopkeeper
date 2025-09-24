@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Styles from "@/styles/home/hero.module.css";
+import style from "../../../styles/home/hero.module.css";
+
 import Image from "next/image";
 
 const images = [
@@ -22,13 +23,13 @@ export default function Slider() {
   }, []);
 
   return (
-    <div className={Styles.imageSection}>
-      <div className={Styles.Slider}>
+    <div className={style.imageSection}>
+      <div className={style.Slider}>
         {images[currentIndex] && (
           <Image
             src={images[currentIndex]}
             alt={`Slide ${currentIndex + 1}`}
-            className={Styles.slide}
+            className={style.slide}
             width={800}
             height={400}
             priority

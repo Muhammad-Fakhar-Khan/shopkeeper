@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
-import { getCategory, getAllProducts } from "@/library";
-import { useCart } from "@/context/CartContext";
+import { getCategory, getAllProducts } from "../../library";
+import { useCart } from "../../context/CartContext";
 
 export default function StorePage() {
   const [categories, setCategories] = useState([]);
