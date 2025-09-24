@@ -44,7 +44,7 @@ export default function ContactPage() {
           </span>
         </h1>
         <p className="text-center text-gray-600 mb-12">
-          We'd love to hear from you! Whether you have a question or just want to say hello.
+          We&apos;d love to hear from you! Whether you have a question or just want to say hello.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -53,7 +53,10 @@ export default function ContactPage() {
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Get in Touch</h2>
             <div className="flex items-center gap-4">
               <Mail className="text-pink-600" />
-              <a href="mailto:support@theeproject.com" className="text-gray-700 hover:text-pink-600">
+              <a
+                href="mailto:support@theeproject.com"
+                className="text-gray-700 hover:text-pink-600"
+              >
                 support@theeproject.com
               </a>
             </div>
