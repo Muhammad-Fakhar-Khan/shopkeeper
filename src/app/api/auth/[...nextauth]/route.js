@@ -1,18 +1,31 @@
 // src/app/api/auth/[...nextauth]/route.js
 import NextAuth from "next-auth";
-import GithubProvider from "next-auth/providers/github";
+import CredentialsProvider from "next-auth/providers/credentials";
 
-export const authOptions = {
+const handler = NextAuth({
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (
+          credentials.email === "test@example.com" &&
+          credentials.password === "1234"
+        ) {
+          return { id: 1, name: "Test User", email: "test@example.com" };
+        }
+        return null;
+      },
     }),
   ],
-  session: {
-    strategy: "jwt",
+  session: { strategy: "jwt" },
+  pages: {
+    signIn: "/signin",   // 👈 use your custom signin page
+    newUser: "/signup",  // 👈 optional, custom signup page
   },
-};
+});
 
-const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };

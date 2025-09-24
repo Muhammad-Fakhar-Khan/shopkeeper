@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-pink-500 text-black py-12">
+    <footer className="bg-pink-500 text-white py-12">
       <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between gap-8">
         {/* About Section */}
         <div className="flex-1">
@@ -29,6 +29,16 @@ export default function Footer() {
                 Store
               </Link>
             </li>
+            <li>
+              <Link href="/about" className="hover:text-pink-700">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-pink-700">
+                Contact Us
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -43,7 +53,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="mt-8 border-t border-black pt-4 text-center text-sm">
-        © {new Date().getFullYear()} E Store. All rights reserved.
+        © {new Date().getFullYear()} E Store. All rights reserved by Muhammad Fakhar Khan.
       </div>
     </footer>
   );

@@ -4,7 +4,7 @@ import { FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import Container from "./Container";
 import Link from "next/link";
 import { useCart } from "../../context/CartContext";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,10 +24,30 @@ export default function Header() {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-6">
-          <Link href="/" className="font-semibold text-gray-800 hover:text-pink-500">Home</Link>
-          <Link href="/store" className="font-semibold text-gray-800 hover:text-pink-500">Store</Link>
-          <Link href="/about" className="font-semibold text-gray-800 hover:text-pink-500">About</Link>
-          <Link href="/contact" className="font-semibold text-gray-800 hover:text-pink-500">Contact</Link>
+          <Link
+            href="/"
+            className="font-semibold text-gray-800 hover:text-pink-500"
+          >
+            Home
+          </Link>
+          <Link
+            href="/store"
+            className="font-semibold text-gray-800 hover:text-pink-500"
+          >
+            Store
+          </Link>
+          <Link
+            href="/about"
+            className="font-semibold text-gray-800 hover:text-pink-500"
+          >
+            About
+          </Link>
+          <Link
+            href="/contact"
+            className="font-semibold text-gray-800 hover:text-pink-500"
+          >
+            Contact
+          </Link>
 
           {/* Cart */}
           <Link href="/cart" className="relative">
@@ -42,7 +62,9 @@ export default function Header() {
           {/* Login / Logout */}
           {session ? (
             <>
-              <span className="ml-4 text-gray-700">Hi, {session.user.name}</span>
+              <span className="ml-4 text-gray-700">
+                Hi, {session.user?.name || session.user?.email}
+              </span>
               <button
                 onClick={() => signOut()}
                 className="ml-2 px-3 py-1 bg-pink-500 text-white rounded hover:bg-pink-600 transition"
@@ -51,12 +73,12 @@ export default function Header() {
               </button>
             </>
           ) : (
-            <button
-              onClick={() => signIn()}
+            <Link
+              href="/signin"
               className="ml-2 px-3 py-1 bg-pink-500 text-white rounded hover:bg-pink-600 transition"
             >
               Login / Signup
-            </button>
+            </Link>
           )}
         </nav>
 
@@ -72,13 +94,41 @@ export default function Header() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-md z-50 px-6 py-6 flex flex-col gap-4">
-          <Link href="/" onClick={() => setMenuOpen(false)} className="font-semibold text-gray-800 hover:text-pink-500">Home</Link>
-          <Link href="/store" onClick={() => setMenuOpen(false)} className="font-semibold text-gray-800 hover:text-pink-500">Store</Link>
-          <Link href="/about" onClick={() => setMenuOpen(false)} className="font-semibold text-gray-800 hover:text-pink-500">About</Link>
-          <Link href="/contact" onClick={() => setMenuOpen(false)} className="font-semibold text-gray-800 hover:text-pink-500">Contact</Link>
+          <Link
+            href="/"
+            onClick={() => setMenuOpen(false)}
+            className="font-semibold text-gray-800 hover:text-pink-500"
+          >
+            Home
+          </Link>
+          <Link
+            href="/store"
+            onClick={() => setMenuOpen(false)}
+            className="font-semibold text-gray-800 hover:text-pink-500"
+          >
+            Store
+          </Link>
+          <Link
+            href="/about"
+            onClick={() => setMenuOpen(false)}
+            className="font-semibold text-gray-800 hover:text-pink-500"
+          >
+            About
+          </Link>
+          <Link
+            href="/contact"
+            onClick={() => setMenuOpen(false)}
+            className="font-semibold text-gray-800 hover:text-pink-500"
+          >
+            Contact
+          </Link>
 
           {/* Cart */}
-          <Link href="/cart" className="relative" onClick={() => setMenuOpen(false)}>
+          <Link
+            href="/cart"
+            className="relative"
+            onClick={() => setMenuOpen(false)}
+          >
             <FiShoppingCart size={25} />
             {cartCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
@@ -90,21 +140,23 @@ export default function Header() {
           {/* Login / Logout */}
           {session ? (
             <>
-              <span className="text-gray-700">Hi, {session.user.name}</span>
+              <span className="ml-4 text-gray-700">
+                Hi, {session.user.name}
+              </span>
               <button
                 onClick={() => signOut()}
-                className="px-3 py-1 bg-pink-500 text-white rounded hover:bg-pink-600 transition"
+                className="ml-2 px-3 py-1 bg-pink-500 text-white rounded hover:bg-pink-600 transition"
               >
                 Logout
               </button>
             </>
           ) : (
-            <button
-              onClick={() => signIn()}
-              className="px-3 py-1 bg-pink-500 text-white rounded hover:bg-pink-600 transition"
+            <Link
+              href="/signin"
+              className="ml-2 px-3 py-1 bg-pink-500 text-white rounded hover:bg-pink-600 transition"
             >
               Login / Signup
-            </button>
+            </Link>
           )}
         </div>
       )}
