@@ -1,5 +1,12 @@
-const Container = ({ children, className }) => {
-  return <div className={`max-w-7xl mx-auto ${className}`}>{children}</div>;
-};
+"use client";
+import React from "react";
 
-export default Container;
+export default function Container({ children, className = "" }) {
+  return (
+    <div
+      className={`max-w-[1200px] w-full mx-auto px-4 sm:px-6 md:px-8 ${className}`}
+    >
+      {children}
+    </div>
+  );
+}

@@ -1,21 +1,12 @@
-
-import { Geist, Geist_Mono } from "next/font/google";
+// src/app/layout.js
 import "./globals.css";
-import { CartProvider } from "../context/CartContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Toaster } from "react-hot-toast"; // ✅ import toaster
+import { Geist, Geist_Mono } from "next/font/google";
+import ClientProviders from "./components/ClientProviders"; // the wrapper for hooks
 
-// Import Geist fonts
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata = {
   title: "E Store",
@@ -25,16 +16,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`min-h-screen flex flex-col antialiased ${geistSans.variable} ${geistMono.variable}`}
-      >
-        <CartProvider>
+      <body className="min-h-screen flex flex-col antialiased">
+        <ClientProviders>
           <Header />
           <main className="flex-grow">{children}</main>
           <Footer />
-          <Toaster position="bottom-center" reverseOrder={false} /> 
-          {/* ✅ toast notifications show up here */}
-        </CartProvider>
+        </ClientProviders>
       </body>
     </html>
   );
