@@ -36,7 +36,7 @@ export default function Footer() {
         <div className="flex-1">
           <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
           <p>Email: support@estore.com</p>
-          <p>Phone: +1 234 567 890</p>
+          <p>Phone: +92 300 1234567</p>
           <p>Address: 123 E-Store Street, Karachi, Pakistan</p>
         </div>
       </div>

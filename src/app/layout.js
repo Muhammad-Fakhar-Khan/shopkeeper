@@ -1,9 +1,10 @@
-// src/app/layout.js
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { CartProvider } from "../context/CartContext"; // ✅ correct relative path
-import Header from "./components/Header"; // ✅ correct relative path
-import Footer from "./components/Footer"; // ✅ correct relative path
+import { CartProvider } from "../context/CartContext";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { Toaster } from "react-hot-toast"; // ✅ import toaster
 
 // Import Geist fonts
 const geistSans = Geist({
@@ -27,11 +28,12 @@ export default function RootLayout({ children }) {
       <body
         className={`min-h-screen flex flex-col antialiased ${geistSans.variable} ${geistMono.variable}`}
       >
-        {/* Wrap everything inside CartProvider */}
         <CartProvider>
           <Header />
           <main className="flex-grow">{children}</main>
           <Footer />
+          <Toaster position="bottom-center" reverseOrder={false} /> 
+          {/* ✅ toast notifications show up here */}
         </CartProvider>
       </body>
     </html>
