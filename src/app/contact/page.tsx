@@ -38,7 +38,10 @@ export default function ContactPage() {
     <div className="min-h-screen bg-gray-50 py-16 px-6">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-4 text-gray-800">
-          Contact <span className="from-pink-600 to-purple-600">Us</span>
+          Contact{" "}
+          <span className="bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+            Us
+          </span>
         </h1>
         <p className="text-center text-gray-600 mb-12">
           We'd love to hear from you! Whether you have a question or just want to say hello.
@@ -102,7 +105,15 @@ export default function ContactPage() {
                 <Send size={18} /> Send Message
               </button>
             </form>
-            {status && <p className="mt-4 text-green-600">{status}</p>}
+            {status && (
+              <p
+                className={`mt-4 ${
+                  status.startsWith("✅") ? "text-green-600" : "text-red-600"
+                }`}
+              >
+                {status}
+              </p>
+            )}
           </div>
         </div>
       </div>

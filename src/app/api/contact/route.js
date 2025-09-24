@@ -1,3 +1,4 @@
+// src/app/api/contact/route.js
 import nodemailer from "nodemailer";
 
 export async function POST(req) {
@@ -10,8 +11,8 @@ export async function POST(req) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "fakharkhan3312@gmail.com", // your Gmail
-      pass: process.env.GMAIL_APP_PASSWORD
+      user: "fakharkhan3312@gmail.com",
+      pass: process.env.GMAIL_APP_PASSWORD,
     },
   });
 
@@ -29,4 +30,9 @@ export async function POST(req) {
     console.error(err);
     return new Response(JSON.stringify({ message: "Email sending failed" }), { status: 500 });
   }
+}
+
+// ✅ optional test route
+export async function GET() {
+  return new Response("API working!", { status: 200 });
 }
